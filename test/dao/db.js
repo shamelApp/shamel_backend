@@ -6,12 +6,10 @@ const db = require('../../lib/db');
 
 describe('Testing DB functions for user table...', () => {
   let collection;
-  let client;
 
   before(async () => {
     await db.connect();
-    client = db.getClient();
-    collection = client.collection('user');
+    collection = db.collection('user');
   });
 
   it('find user with firstName Auto', async () => {
