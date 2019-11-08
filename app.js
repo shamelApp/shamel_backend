@@ -2,12 +2,11 @@ const dotenv = require('dotenv');
 const express = require('express');
 
 const defaultRouter = require('./lib/routers/default');
-const authenticatedRouter = require('./lib/routers/authenticated');
 const errorHandler = require('./lib/errors/errorHandler');
 const ErrStrategies = require('./lib/errors/strategies');
 const indexRoute = require('./lib/routes/index');
-const readyRoute = require('./lib/routes/ready').ready;
-const logger = require('./lib/utils/logger').Logger;
+const { ready: readyRoute } = require('./lib/routes/ready');
+const { Logger: logger } = require('./lib/utils/logger');
 const db = require('./lib/db');
 
 dotenv.config({ silent: true });
@@ -24,7 +23,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', indexRoute(defaultRouter()));
-app.use('/ready', readyRoute(authenticatedRouter(), db));
+app.use('/ready', readyRoute(defaultRouter(), db));
 
 appErrorHandler(app);
 

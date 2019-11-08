@@ -1,29 +1,33 @@
-const { ObjectId } = require('mongodb');
 const { assert } = require('chai');
 
-const common = require('../../lib/db/common_db');
+const { find, insert, removeById } = require('../../lib/db/common_db');
 const db = require('../../lib/db');
 
 describe('Testing DB functions for user table...', () => {
   let collection;
 
+  const testUser = {
+    firstName: 'test',
+    lastName: 'user',
+  };
+
   before(async () => {
     await db.connect();
-    collection = db.collection('user');
+    collection = db.collection('test');
+
+    await insert(collection, testUser);
   });
 
-  it('find user with firstName Auto', async () => {
-    const results = await common.find(collection, { firstName: 'Auto' });
+  after(async () => {
+    await removeById(collection, testUser._id);
+  });
+
+  it('find user with first name test', async () => {
+    const results = await find(collection, { firstName: 'test' });
     assert.isNotEmpty(results, 'User should exist');
 
     const actualUser = results[0];
 
-    const expectedUser = {
-      _id: ObjectId('5c06763faa4a0e0117f7bae7'),
-      firstName: 'Auto',
-      lastName: 'user',
-    };
-
-    assert.deepEqual(actualUser, expectedUser);
+    assert.deepInclude(actualUser, testUser);
   });
 });
