@@ -1,0 +1,41 @@
+openapi: 3.0.0
+info:
+  description:
+    NodeJS Template
+    [https://10.4.21.20/TalarK/nodejs-template](https://10.4.21.20/TalarK/nodejs-template)
+  version: '1.0'
+  title: NodeJS Template
+
+servers:
+  - url: http://localhost:8000/
+    description: local server
+
+paths:
+  /:
+    get:
+      tags:
+        - default
+      summary: Get the default route
+      description: returns index
+      operationId: default
+      responses:
+        200:
+          description: successful api call, returns index
+        400:
+          description: vaidation error
+        500:
+          description: an error occured
+  /ready:
+    get:
+      tags:
+        - ready
+      summary: Checks if the server is up and ready
+      description: Checks if the server is up and ready
+      operationId: ready
+      responses:
+        204:
+          description: the server is up and ready
+        400:
+          description: validation error
+        500:
+          description: an error occured
