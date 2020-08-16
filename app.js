@@ -28,5 +28,5 @@ app.use('/ready', readyRoute(defaultRouter(), db));
 appErrorHandler(app);
 
 app.listen(PORT, () => {
-  logger.info(`areeba backend listening on port: ${PORT}`);
+  logger.info(`backend listening on port: ${PORT}`);
 });
