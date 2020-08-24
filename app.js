@@ -12,20 +12,20 @@ const db = require('./lib/db');
 dotenv.config({ silent: true });
 
 const app = express();
-const appErrorHandler = errorHandler([ErrStrategies.defaultStrategy]);
+// const appErrorHandler = errorHandler([ErrStrategies.defaultStrategy]);
 const PORT = process.env.PORT || 5000;
 
-app.use((req, res, next) => {
-  req.getVersion = function validateVer() {
-    return req.headers.accept.split('version=')[1];
-  };
-  next();
-});
+// app.use((req, res, next) => {
+//   req.getVersion = function validateVer() {
+//     return req.headers.accept.split('version=')[1];
+//   };
+//   next();
+// });
 
 app.use('/', indexRoute(defaultRouter()));
-app.use('/ready', readyRoute(defaultRouter(), db));
+// app.use('/ready', readyRoute(defaultRouter(), db));
 
-appErrorHandler(app);
+// appErrorHandler(app);
 
 app.listen(PORT, () => {
   logger.info(`backend listening on port: ${PORT}`);
