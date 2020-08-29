@@ -31,12 +31,13 @@ For adding environment variables, add `.env` file at the root of the project lik
 ```bash
 LOGGING_LEVEL='info'
 PORT=5000
-MONGODB_HOST='localhost'
-MONGODB_PORT='27017'
-MONGODB_DATABASE='<DB_NAME>'
-MONGODB_USER='<YOUR_MONGO_USERNAME>'
-MONGODB_PWD='<YOUR_MONGO_PASSWORD>'
+MYSQL_HOST='localhost'
+MYSQL_PORT='3306'
+MYSQL_DATABASE='<DB_NAME>'
+MYSQL_USER='<YOUR_MONGO_USERNAME>'
+MYSQL_PWD='<YOUR_MONGO_PASSWORD>'
 BASE_URL='<CURRENT_MS_URL>'
+PORT='<CHOOSE_PORT>'
 ```
 
 ## List of existing commands
